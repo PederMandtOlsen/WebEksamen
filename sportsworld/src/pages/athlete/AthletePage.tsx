@@ -1,11 +1,11 @@
-import AthleteList from "../components/athletes/AthleteList"
+import AthleteList from "../../components/athlete/AthleteList"
 
 
 const AthletePage = () => {
     return (
         <>
             <header>
-                <h1>Athlete page</h1>
+                <h1>Administering athletes</h1>
             </header>
             <AthleteList/>
         </>

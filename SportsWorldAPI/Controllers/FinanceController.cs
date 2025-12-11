@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using SportsWorldAPI.Contexts;
+using SportsWorldAPI.Models;
 
 namespace SportsWorldAPI.Controllers;
 

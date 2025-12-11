@@ -37,12 +37,6 @@ public class AthleteController(SportsWorldContext _sportsWorldContext) : Control
         }
     }
 
-    [HttpGet("debug")]
-public async Task<ActionResult<List<Athlete>>> Debug()
-{
-    var athletes = await _sportsWorldContext.Athletes.ToListAsync();
-    return athletes;
-}
 
     /*
     [HttpGet]  

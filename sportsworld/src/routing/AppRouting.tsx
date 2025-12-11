@@ -1,6 +1,8 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import AthletePage from '../pages/AthletePage';
+import AthletePage from '../pages/athlete/AthletePage';
+import AthleteRegisterPage from '../pages/athlete/AthleteRegisterPage';
 import PageNavigation from '../components/shared/PageNavigation';
+import DashboardPage from '../pages/dashboard/DashboardPage';
 
 
 const AppRouting = () => {
@@ -12,10 +14,11 @@ const AppRouting = () => {
         <Routes>
             <Route path='/' element={<AthletePage/>}/>
             <Route path='/athlete-search-edit-delete' element={<AthletePage/>}/>
-        </Routes>
-        
-        </BrowserRouter>
-    )
-} 
+            <Route path='/athlete-register' element={<AthleteRegisterPage/>}/>
+             <Route path='/dashboard' element={<DashboardPage/>}/>
+        </Routes> 
+        </BrowserRouter> 
+    ) 
+}
 
 export default AppRouting;
