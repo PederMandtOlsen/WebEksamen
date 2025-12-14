@@ -20,7 +20,7 @@ const getAllAthletes = async () : Promise<IAthletesResponse> => {
     }
 }
 
-const getAthleteById = async (id: number) : Promise<IAthletesResponse> => {
+const getAthleteById = async (id: number) : Promise<IAthleteResponse> => {
     try {
         const response = await axios.get(`${endpoint}/${id}`);
         return {
@@ -29,6 +29,24 @@ const getAthleteById = async (id: number) : Promise<IAthletesResponse> => {
         }
         
     } catch {
+        return {
+            success: false,
+            data: null
+        }
+    }
+}
+
+const searchByName = async (name: string) : Promise<IAthletesResponse> => {
+    try {
+
+        const response = await axios.get(`${endpoint}/get-by-name/${encodeURIComponent(name)}`);
+        return {
+            success: true,
+            data: response.data 
+        }
+
+    } catch (error) {
+        console.error("searchByName failed:", error)
         return {
             success: false,
             data: null
@@ -57,10 +75,6 @@ const postAthlete = async (athlete: IAthlete) : Promise<IAthleteResponse> => {
     }
 }
 
-/*
-const putAthlete = async () : Promise<IAthleteResponse> => {
-    const response = await axios.put()
-} */
 
 const deleteAthlete = async (id: number) : Promise<IDefaultResponse>=> {
     try {
@@ -100,6 +114,7 @@ const putAthlete = async (editedAthlete: IAthlete) : Promise<IAthleteResponse> =
 export default {
     getAllAthletes,
     getAthleteById,
+    searchByName,
     postAthlete,
     deleteAthlete,
     putAthlete

@@ -7,4 +7,5 @@ export interface IAthleteContext {
     athletes: IAthlete[]
     getAthleteQuantity: () => number
     saveAthlete: (newAthlete: IAthlete) => Promise<IDefaultResponse>
+    deleteAthlete: (id: number) => Promise<IDefaultResponse>
 }

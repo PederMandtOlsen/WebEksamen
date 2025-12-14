@@ -38,27 +38,30 @@ public class AthleteController(SportsWorldContext _sportsWorldContext) : Control
     }
 
 
-    /*
-    [HttpGet]  
-    [Route("[action]/{name}")]  
+
+    [HttpGet("get-by-name/{name}")]  
     public async Task<ActionResult<List<Athlete>>> GetByName(string name)
     {
 
         try {
         List<Athlete> athletes = await _sportsWorldContext.Athletes
         .Where(
-            athlete => athlete.Name.Contains(
-                name, 
-                StringComparison.CurrentCultureIgnoreCase
-            )
-        ).ToListAsync();
+            athlete =>
+            athlete.Name != null && 
+            athlete.Name.ToLower().Contains(name.ToLower())
+        )
+        .ToListAsync();
+
         return Ok(athletes);
+
         } catch (Exception e)
         {
-            return StatusCode(500);
+
+            Console.WriteLine("Error in getbyname");
+            return StatusCode(500, e.Message);
         }
     }
-    */
+    
     
 
 

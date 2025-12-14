@@ -11,5 +11,5 @@ public class Athlete : IAthlete {
    public string Gender {get; set;} = String.Empty;
     public int Price {get; set;}
     public string Image {get; set;} = String.Empty;
-    public bool PurchaseStatus {get; set;}
+    public bool PurchasedStatus {get; set;}
 }

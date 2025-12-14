@@ -56,11 +56,23 @@ export const AthleteProvider = ({children} : Props) => {
         return response
 
     }
+
+
+    const deleteAthlete = async (id: number): Promise<IDefaultResponse> => {
+        const response = await AthleteService.deleteAthlete(id);
+
+        if(response.success === true) {
+            setAthletes(prev => prev.filter(athlete => athlete.id !== id))
+        }
+
+        return response
+    }
         return (
             <AthleteContext.Provider value =  {{
                 athletes,
                 getAthleteQuantity,
-                saveAthlete
+                saveAthlete,
+                deleteAthlete
             }}> 
             {children}
         </AthleteContext.Provider>
