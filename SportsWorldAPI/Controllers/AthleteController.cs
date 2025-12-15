@@ -1,4 +1,3 @@
-using System.Runtime.CompilerServices;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SportsWorldAPI.Contexts;
@@ -33,7 +32,7 @@ public class AthleteController(SportsWorldContext _sportsWorldContext) : Control
             return Ok(athlete);
         } else
         {
-            return NotFound("Not athlete with id: ${id} were found");
+            return NotFound($"Not athlete with id: {id} was found");
         }
     }
 
@@ -61,24 +60,25 @@ public class AthleteController(SportsWorldContext _sportsWorldContext) : Control
             return StatusCode(500, e.Message);
         }
     }
-    
-    
-
-
 
     [HttpPost] 
 
     public async Task<ActionResult<Athlete>> Post(Athlete newAthlete)
     {
+
        _sportsWorldContext.Athletes.Add(newAthlete);
        await _sportsWorldContext.SaveChangesAsync();
        return CreatedAtAction("Get", new {id = newAthlete.Id}, newAthlete);
     }
     
-    [HttpPut] 
+    [HttpPut("{id}")] 
 
-    public async Task<ActionResult<Athlete>> Put(Athlete editedAthlete)
+    public async Task<ActionResult<Athlete>> Put(int id, Athlete editedAthlete)
     {
+
+        if (id != editedAthlete.Id) 
+            return BadRequest("Id dont match");
+
        _sportsWorldContext.Entry(editedAthlete).State = EntityState.Modified;
        await _sportsWorldContext.SaveChangesAsync();
        return NoContent();

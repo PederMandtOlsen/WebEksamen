@@ -9,4 +9,5 @@ export interface IAthleteContext {
     addAthlete: (newAthlete: IAthlete) => Promise<IDefaultResponse>
     deleteAthlete: (id: number) => Promise<IDefaultResponse>
     updateAthlete: (athlete: IAthlete) => void
+    refreshAthletes: () => Promise<void>
 }

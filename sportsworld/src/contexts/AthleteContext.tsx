@@ -74,6 +74,11 @@ export const AthleteProvider = ({children} : Props) => {
         )
     }
 
+    const refreshAthletes = async () => {
+        await setAthletesFromService();
+    }
+
+
 
         return (
             <AthleteContext.Provider value =  {{
@@ -82,6 +87,7 @@ export const AthleteProvider = ({children} : Props) => {
                 addAthlete,
                 deleteAthlete,
                 updateAthlete,
+                refreshAthletes
             }}> 
             {children}
         </AthleteContext.Provider>
