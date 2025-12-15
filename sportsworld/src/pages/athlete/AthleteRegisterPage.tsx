@@ -1,10 +1,11 @@
+import AthleteForm from "../../components/athlete/AthleteForm"
 
 const AthleteRegisterPage = () => {
     return (
         <>
-            <header>
-                <h1>Register potential athlete</h1>
-            </header>
+            <section className="flex justify-center">
+                <AthleteForm/>
+            </section>
         </>
     )
 }

@@ -6,6 +6,7 @@ import type { IDefaultResponse } from "./ResponseInterfaces";
 export interface IAthleteContext {
     athletes: IAthlete[]
     getAthleteQuantity: () => number
-    saveAthlete: (newAthlete: IAthlete) => Promise<IDefaultResponse>
+    addAthlete: (newAthlete: IAthlete) => Promise<IDefaultResponse>
     deleteAthlete: (id: number) => Promise<IDefaultResponse>
+    updateAthlete: (athlete: IAthlete) => void
 }

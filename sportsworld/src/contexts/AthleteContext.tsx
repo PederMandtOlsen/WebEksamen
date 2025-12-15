@@ -40,7 +40,7 @@ export const AthleteProvider = ({children} : Props) => {
         return athletes.length;
     }
 
-    const saveAthlete = async (newAthlete: IAthlete) : Promise<IDefaultResponse> => {
+    const addAthlete = async (newAthlete: IAthlete) : Promise<IDefaultResponse> => {
 
         const response = await AthleteService.postAthlete(newAthlete);
 
@@ -67,16 +67,24 @@ export const AthleteProvider = ({children} : Props) => {
 
         return response
     }
+
+    const updateAthlete = (updated: IAthlete) => {
+        setAthletes(prev => 
+            prev.map(athlete => athlete.id === updated.id ? updated : athlete)
+        )
+    }
+
+
         return (
             <AthleteContext.Provider value =  {{
                 athletes,
                 getAthleteQuantity,
-                saveAthlete,
-                deleteAthlete
+                addAthlete,
+                deleteAthlete,
+                updateAthlete,
             }}> 
             {children}
         </AthleteContext.Provider>
         )
-
 }
 

@@ -36,14 +36,14 @@ const AthleteSearchById = () => {
 
     return (
       <section>
-            <div>
                 <input 
                 type="number" 
+                className="bg-white rounded-lg p-2"
                 placeholder="Search by ID" 
                 onChange={(e) => setId(Number(e.target.value))}
                 />
-                <button onClick={handleSearch}>Search</button>
-            </div>
+                <button className="border-black rounded-lg p-2.5 m-1 bg-black text-white text-sm" onClick={handleSearch}>Search</button>
+    
             <div>
                 <p>{statusMessage}</p>
                 {athlete &&

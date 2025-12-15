@@ -35,14 +35,13 @@ const AthleteSearchByName = () => {
 
     return (
         <section>
-            <div>
                 <input 
                 type="text" 
+                className="rounded-lg bg-white p-2"
                 placeholder="Search by name" 
                 onChange={(e) => setName(e.target.value)}
                 />
-                <button onClick={handleSearch}>Search</button>
-            </div>
+                <button className="border-black rounded-lg p-2.5 m-1 bg-black text-white text-sm" onClick={handleSearch}>Search</button>
             <div>
                 <p>{statusMessage}</p>
                 <ul>
