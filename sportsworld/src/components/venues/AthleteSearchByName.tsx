@@ -1,30 +1,30 @@
 import { useState } from "react";
-import AthleteService from "../../services/AthleteService";
+import VenueService from "../../services/VenueService";
 
-const AthleteSearchByName = () => {
+const VenueSearchByName = () => {
     const [name, setName] = useState ("")
     const [statusMessage, setStatusMessage] = useState ("")
-    const [athletes, setAthletes] = useState<any[]>([])
+    const [venues, setVenues] = useState<any[]>([])
 
 
     const handleSearch = async () => {
 
        if (!name.trim()) {
         setStatusMessage("Enter atleast one letter")
-        setAthletes([])
+        setVenues([])
         return
        } 
        
        try {
-        const result = await AthleteService.searchByName(name)
+        const result = await VenueService.searchByName(name)
         if (!result.success || !result.data || result.data.length === 0 ) {
-            setStatusMessage("No athletes matching your search")
-            setAthletes([])
+            setStatusMessage("No Venues matching your search")
+            setVenues([])
         } 
 
         else {
             setStatusMessage("")
-            setAthletes(result.data)
+            setVenues(result.data)
 
         }
 
@@ -45,12 +45,10 @@ const AthleteSearchByName = () => {
             <div>
                 <p>{statusMessage}</p>
                 <ul>
-                    {athletes.map((athlete) => (
-                        <div key={athlete.id}>
-                            <li>Name: {athlete?.name}</li>
-                            <li>Gender: {athlete?.gender}</li>
-                            <li>Price: {athlete?.price}</li>
-                            <li>Purchase status: {athlete?.purchasedStatus ? "Purchased" : "Not purchased"}</li>
+                    {venues.map((venue) => (
+                        <div key={venue.id}>
+                            <li>Name: {venue?.name}</li>
+                            <li>Capacity: {venue?.capacity}</li>
                         </div>
                     ) )}
                 </ul>
@@ -59,4 +57,4 @@ const AthleteSearchByName = () => {
     )
 }
 
-export default AthleteSearchByName
+export default VenueSearchByName

@@ -1,31 +1,31 @@
 import { useState } from "react";
-import AthleteService from "../../services/AthleteService";
-import type { IAthlete } from "../../interfaces/IAthlete";
+import VenueService from "../../services/VenueService";
+import type { IVenue } from "../../interfaces/IVenue";
 
-const AthleteSearchById = () => {
+const VenueSearchById = () => {
     const [id, setId] = useState<number | null> (null)
     const [statusMessage, setStatusMessage] = useState ("")
-    const [athlete, setAthlete] = useState<IAthlete | null>(null) 
+    const [venue, setVenue] = useState<IVenue | null>(null) 
 
 
     const handleSearch = async () => { 
 
        if (id === null || id <= 0) {
         setStatusMessage("Enter a valid id")
-        setAthlete(null)
+        setVenue(null)
         return
        } 
        
        try {
-        const result = await AthleteService.getAthleteById(id)
+        const result = await VenueService.getVenueById(id)
         if (!result.success || !result.data) {
-            setStatusMessage("No athletes matching your search")
-            setAthlete(null)
+            setStatusMessage("No venues matching your search")
+            setVenue(null)
         } 
 
         else {
             setStatusMessage("")
-            setAthlete(result.data)
+            setVenue(result.data)
 
         }
 
@@ -46,12 +46,10 @@ const AthleteSearchById = () => {
     
             <div>
                 <p>{statusMessage}</p>
-                {athlete &&
+                {venue &&
                 <ul>
-                    <li>Name: {athlete?.name}</li>
-                    <li>Gender: {athlete?.gender}</li>
-                    <li>Price: {athlete?.price}</li>
-                    <li>Purchase status: {athlete?.purchasedStatus ? "Purchased" : "Not purchased"}</li>
+                    <li>Name: {venue?.name}</li>
+                    <li>Price: {venue?.capacity}</li>
                 </ul>
                 }
             </div>
@@ -61,4 +59,4 @@ const AthleteSearchById = () => {
 
 }
 
-export default AthleteSearchById; 
+export default VenueSearchById; 

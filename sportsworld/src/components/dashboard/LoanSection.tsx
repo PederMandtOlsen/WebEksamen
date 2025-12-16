@@ -25,7 +25,7 @@ const LoanSection = ({ onAddLoan }: LoanSectionProps) => {
                     onChange={(e) => setLoanAmount(e.target.value)}
                     placeholder="Enter amount"
                 />
-                <button onClick={handleAddLoan}>Add Loan</button>
+                <button className="btn" onClick={handleAddLoan}>Add Loan</button>
             </div>
         </section>
     );

@@ -72,7 +72,7 @@ const handleAddVenue = async () => {
 
         <button 
         onClick={handleAddVenue}
-        className="border rounded px-2 py-1 mt-4 mb-2"
+        className="btn"
         >
             Lagre
         </button>

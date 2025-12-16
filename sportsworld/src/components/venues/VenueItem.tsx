@@ -9,6 +9,7 @@ import type { IVenue } from "../../interfaces/IVenue";
 
 const VenueItem = ({venue, allowEdit = false}: {venue: IVenue; allowEdit?: boolean}) => {
 
+
 const {deleteVenue, updateVenue} = useContext(VenueContext) as IVenueContext
 
 const [isEditing, setIsEditing] = useState(false)
@@ -70,58 +71,46 @@ const showEditForm = allowEdit && isEditing
                 <img 
                 src={venue.image} 
                 alt={venue.name}
-                className="h-40 w-60 rounded-xl m-4"
+                className="img-styling"
                 onError={(e) => {
                     e.currentTarget.src = imagePlaceholder
                 }}
                 />
-                <h3 className="text-lg font-semibold"> {venue.name}</h3>
-                <p>ID: {venue.id}</p>
-                <p>Capacity: {venue.capacity}</p>
+                <div className="mt-4">
+                    <h3 className="text-lg font-semibold"> {venue.name}</h3>
+                    <p>ID: {venue.id}</p>
+                    <p>Capacity: {venue.capacity}</p>
+                </div>
 
                 {allowEdit && (
                     <div className="flex justify-center gap-3 mt-4">
                     <button
                     onClick={startEdit}
-                    className="
-                    m-1
-                    rounded-lg border 
-                    px-4 py-2 
-                    text-sm font-medium 
-                    hover:bg-gray-100
-                    cursor-pointer
-                ">
-                    Edit</button>
-                <button 
+                    className="btn">
+                        Edit
+                    </button>
+                    <button 
                     onClick={handleDelete}
-                    className="
-                    m-1
-                    bg-red-500
-                    rounded-lg border border-red-500
-                    px-4 py-2 
-                    text-sm font-medium text-white
-                    hover:bg-red-600
-                    cursor-pointer
-                ">
-                    Delete</button>
+                    className="btn">
+                        Delete
+                    </button>
                 </div>
                 )}
-             
         </>
       ) : (
 
-        <form onSubmit={saveEdit} className="w-full max-w-[300px] mx-auto" >
+        <form onSubmit={saveEdit} >
 
             <img 
                 src={venue.image} 
                 alt={venue.name}
-                className="h-40 w-60 rounded-xl m-4"
+                className="img-styling" 
                 onError={(e) => {
                     e.currentTarget.src = imagePlaceholder
                 }}
                 />
                 <div className="w-full max-w-[320px] grid gap-3">
-                    <div className="grid grid-cols-[110px_1fr] items-center gap-2">
+                    <div className="grid grid-cols-[110px_1fr] items-center gap-2 mt-4">
                         <label>Name: </label>
                         <input 
                         value={name}
@@ -153,11 +142,11 @@ const showEditForm = allowEdit && isEditing
             <div className="flex justify-center gap-2 mt-4">
                 <button
                 type="submit"
-                className="border rounded p-2 bg-green-500"
+                className="btn"
                 >Save</button>
                 <button
                 type="button"
-                className="border rounded p-2"
+                className="btn"
                 onClick={cancelEdit}
                 >
                     Cancel

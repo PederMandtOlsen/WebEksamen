@@ -1,1 +1,15 @@
-@import "tailwindcss"
+@import "tailwindcss";
+
+.img-styling {
+    @apply
+    h-60 w-100 rounded-xl object-cover
+}
+
+.btn{
+    @apply
+    border border-black 
+    rounded-xl
+    text-black
+    p-2 
+    cursor-pointer
+}

@@ -66,7 +66,7 @@ const handleDelete = async () => {
                 <img 
                 src={athlete.image} 
                 alt={athlete.name}
-                className="h-40 w-60 rounded-xl m-4"
+                className="img-styling"
                 onError={(e) => {
                     e.currentTarget.src = imagePlaceholder
                 }}
@@ -79,26 +79,11 @@ const handleDelete = async () => {
                 <div className="flex justify-center gap-3 mt-4">
                     <button
                     onClick={startEdit}
-                    className="
-                    m-1
-                    rounded-lg border 
-                    px-4 py-2 
-                    text-sm font-medium 
-                    hover:bg-gray-100
-                    cursor-pointer
-                ">
+                    className="btn">
                     Edit</button>
                 <button 
                     onClick={handleDelete}
-                    className="
-                    m-1
-                    bg-red-500
-                    rounded-lg border border-red-500
-                    px-4 py-2 
-                    text-sm font-medium text-white
-                    hover:bg-red-600
-                    cursor-pointer
-                ">
+                    className="btn">
                     Delete</button>
                 </div>
         </>
@@ -109,7 +94,7 @@ const handleDelete = async () => {
             <img 
                 src={athlete.image} 
                 alt={athlete.name}
-                className="h-40 w-60 rounded-xl m-4"
+                className="img-styling"
                 onError={(e) => {
                     e.currentTarget.src = imagePlaceholder
                 }}
@@ -159,11 +144,11 @@ const handleDelete = async () => {
             <div className="flex justify-center gap-2 mt-4">
                 <button
                 type="submit"
-                className="border rounded p-2 bg-green-500"
+                className="btn"
                 >Save</button>
                 <button
                 type="button"
-                className="border rounded p-2"
+                className="btn"
                 onClick={cancelEdit}
                 >
                     Cancel

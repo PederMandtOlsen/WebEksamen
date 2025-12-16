@@ -4,9 +4,10 @@ import type { IVenueContext } from "../../interfaces/IVenueContext";
 import { VenueContext } from "../../contexts/VenueContext";
 
 
-const VenueList = ({ allowEdit = false}: {allowEdit?: boolean}) => {
+const VenueList = ({ allowEdit = false}: {allowEdit?: boolean;}) => {
 
     const {venues} = useContext(VenueContext) as IVenueContext
+
 
     const getVenueJSX = () => {
         const venueJSX = venues.map( (venue) => {
@@ -29,7 +30,7 @@ const VenueList = ({ allowEdit = false}: {allowEdit?: boolean}) => {
 
 
     return (
-             <section className=" grid gap-8 grid-cols-1 md:grid-cols-2 bg">
+             <section className=" grid gap-8 grid-cols-1 md:grid-cols-2">
                 {getVenueJSX()}
             </section>
     )

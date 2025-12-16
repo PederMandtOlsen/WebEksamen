@@ -84,7 +84,7 @@ const handleAddAthlete = async () => {
 
         <button 
         onClick={handleAddAthlete}
-        className="border rounded px-2 py-1 mt-4 mb-2"
+        className="btn mt-4"
         >
             Lagre
         </button>
