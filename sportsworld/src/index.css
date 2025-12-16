@@ -2,7 +2,7 @@
 
 .img-styling {
     @apply
-    h-60 w-100 rounded-xl object-cover
+    h-36 w-60 rounded-xl object-cover
 }
 
 .btn{
@@ -12,4 +12,11 @@
     text-black
     p-2 
     cursor-pointer
+}
+
+.btn-danger{
+    @apply
+    text-white
+    bg-red-500
+    hover:bg-red-600
 }

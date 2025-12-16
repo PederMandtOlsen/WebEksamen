@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { VenueContext } from "../../contexts/VenueContext";
 import type { IVenueContext } from "../../interfaces/IVenueContext";
 import imagePlaceholder from  "../../assets/images/placeholder.png";
@@ -18,15 +18,15 @@ const [name, setName] = useState(venue.name)
 const [capacity, setCapacity] = useState(venue.capacity)
 const [image, setImage] = useState(venue.image)
 
-useEffect(() => {
-    setName(venue.name)
-    setCapacity(venue.capacity)
-    setImage(venue.image)
-}, [venue.name, venue.capacity, venue.image])
+
 
 const startEdit = () => { 
     if (!allowEdit) return
+    setName(venue.name)
+    setCapacity(venue.capacity)
+    setImage(venue.image)
     setIsEditing(true) }
+    
 
 const cancelEdit = () => {
     setIsEditing(false)
@@ -91,7 +91,7 @@ const showEditForm = allowEdit && isEditing
                     </button>
                     <button 
                     onClick={handleDelete}
-                    className="btn">
+                    className="btn btn-danger">
                         Delete
                     </button>
                 </div>
@@ -124,7 +124,7 @@ const showEditForm = allowEdit && isEditing
                         type="number"
                         value={capacity}
                         onChange={(e) => setCapacity(Number(e.target.value))}  
-                        className="border rounded px-2 py-1 w-40"
+                        className="border rounded px-2 py-1 w-full"
                         />
                     </div>
                     <div className="grid grid-cols-[110px_1fr] w-full items-center gap-2    ">
@@ -132,7 +132,7 @@ const showEditForm = allowEdit && isEditing
                         <input 
                         value={image}
                         onChange={(e) => setImage(e.target.value)}  
-                        className="border rounded px-2 py-1 w-40"
+                        className="border rounded px-2 py-1 w-full"
                         />
                     </div>
                 </div>

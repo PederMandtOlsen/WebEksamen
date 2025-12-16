@@ -83,7 +83,7 @@ const handleDelete = async () => {
                     Edit</button>
                 <button 
                     onClick={handleDelete}
-                    className="btn">
+                    className="btn btn-danger">
                     Delete</button>
                 </div>
         </>

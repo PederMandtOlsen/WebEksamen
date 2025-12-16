@@ -24,17 +24,15 @@ const VenueList = ({ allowEdit = false}: {allowEdit?: boolean;}) => {
 
     if (venues.length === 0) {
         return (
-            <p>No venues available</p>
+            <p className="text-center">No venues available</p>
         )
     }
-
 
     return (
              <section className=" grid gap-8 grid-cols-1 md:grid-cols-2">
                 {getVenueJSX()}
             </section>
     )
-
 }
 
 export default VenueList;
