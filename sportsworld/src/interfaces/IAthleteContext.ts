@@ -8,6 +8,6 @@ export interface IAthleteContext {
     getAthleteQuantity: () => number
     addAthlete: (newAthlete: IAthlete) => Promise<IDefaultResponse>
     deleteAthlete: (id: number) => Promise<IDefaultResponse>
-    updateAthlete: (athlete: IAthlete) => void
+    updateAthlete: (athlete: IAthlete) => Promise<IDefaultResponse>
     refreshAthletes: () => Promise<void>
 }

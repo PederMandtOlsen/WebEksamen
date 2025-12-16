@@ -10,6 +10,7 @@ const PageNavigation = () => {
                 <li><Link to="/athlete-search-edit-delete" className="hover:text-gray-500">Athletes</Link></li>
                 <li><Link to="/athlete-register" className="hover:text-gray-500">Register new athlete</Link></li>
                 <li><Link to="/dashboard" className="hover:text-gray-500">Dashboard</Link></li>
+                <li><Link to="/manage-venues" className="hover:text-gray-500">Manage Venues</Link></li>
             </ul>
         </nav>
     )

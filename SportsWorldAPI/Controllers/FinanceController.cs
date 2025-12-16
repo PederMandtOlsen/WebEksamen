@@ -29,6 +29,7 @@ public class FinanceController(SportsWorldContext _sportsWorldContext) : Control
         return Ok(finance);
     }
 
+
     [HttpPost("add-loan/{amount}")]
     public async Task<ActionResult<Finance>> AddLoan(int amount)
     {

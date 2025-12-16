@@ -25,11 +25,10 @@ export const AthleteProvider = ({children} : Props) => {
 
     const setAthletesFromService = async () => {
     const response = await AthleteService.getAllAthletes();
-    console.log("Response fra AthleteService:", response);
 
     if (response.success === true && response.data != null) {
-        console.log("Data fra API:", response.data);
         setAthletes(response.data);
+
     } else {
         console.warn("Klarte ikke å hente atleter");
     }
@@ -55,7 +54,7 @@ export const AthleteProvider = ({children} : Props) => {
 
         return response
 
-    }
+    };
 
 
     const deleteAthlete = async (id: number): Promise<IDefaultResponse> => {
@@ -66,17 +65,31 @@ export const AthleteProvider = ({children} : Props) => {
         }
 
         return response
-    }
+    };
 
-    const updateAthlete = (updated: IAthlete) => {
-        setAthletes(prev => 
-            prev.map(athlete => athlete.id === updated.id ? updated : athlete)
-        )
-    }
+    const updateAthlete = async (updated: IAthlete): Promise<IDefaultResponse> => {
+        const response = await AthleteService.putAthlete(updated)
+
+        if(response.success === true) {
+            await refreshAthletes()
+
+            /*
+            const saved: IAthlete = response.data ?? updated
+
+            setAthletes(prev => 
+                prev.map(athlete => athlete.id === saved.id ? saved: athlete ) 
+            ) */
+
+            return {success: true}
+        }
+
+        return {success: false}
+    };
+    
 
     const refreshAthletes = async () => {
         await setAthletesFromService();
-    }
+    };
 
 
 
@@ -92,5 +105,4 @@ export const AthleteProvider = ({children} : Props) => {
             {children}
         </AthleteContext.Provider>
         )
-}
-
+};

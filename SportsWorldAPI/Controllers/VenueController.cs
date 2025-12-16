@@ -33,7 +33,29 @@ public class VenueController(SportsWorldContext _sportsWorldContext) : Controlle
             return NotFound($"No venue with id: {id} were found");
         }
     }
-    
+
+    [HttpGet("get-by-name/{name}")]  
+    public async Task<ActionResult<List<Venue>>> GetByName(string name)
+    {
+
+        try {
+        List<Venue> venues = await _sportsWorldContext.Venues
+        .Where(
+            venue =>
+            venue.Name != null && 
+            venue.Name.ToLower().Contains(name.ToLower())
+        )
+        .ToListAsync();
+
+        return Ok(venues);
+
+        } catch (Exception e)
+        {
+
+            Console.WriteLine("Error in getbyname");
+            return StatusCode(500, e.Message);
+        }
+    }
 
     [HttpPost] 
 

@@ -1,30 +1,27 @@
-import { useContext, useEffect, useState } from "react";
-import { AthleteContext } from "../../contexts/AthleteContext";
-import type { IAthlete } from "../../interfaces/IAthlete";
-import type { IAthleteContext } from "../../interfaces/IAthleteContext";
+import { useContext, useState } from "react";
+import { VenueContext } from "../../contexts/VenueContext";
+import type { IVenueContext } from "../../interfaces/IVenueContext";
 import imagePlaceholder from  "../../assets/images/placeholder.png";
+import type { IVenue } from "../../interfaces/IVenue";
 
 
 
-const AthleteItem = ({athlete}: {athlete: IAthlete}) => {
+const VenueItem = ({venue}: {venue: IVenue}) => {
 
-const {deleteAthlete, updateAthlete} = useContext(AthleteContext) as IAthleteContext
+const {deleteVenue, updateVenue} = useContext(VenueContext) as IVenueContext
 
 const [isEditing, setIsEditing] = useState(false)
 
-const [name, setName] = useState(athlete.name)
-const [gender, setGender] = useState(athlete.gender)
-const [price, setPrice] = useState(athlete.price)
-const [image, setImage] = useState(athlete.image)
+const [name, setName] = useState(venue.name)
+const [capacity, setCapacity] = useState(venue.capacity)
+const [image, setImage] = useState(venue.image)
 
-useEffect(() => {
-    setName(athlete.name)
-    setGender(athlete.gender)
-    setPrice(athlete.price)
-    setImage(athlete.image)
-}, [athlete])
-
-const startEdit = () => { setIsEditing(true) }
+const startEdit = () => {
+    setName(venue.name)
+    setCapacity(venue.capacity)
+    setImage(venue.image)
+    setIsEditing(true)
+}
 
 const cancelEdit = () => {
     setIsEditing(false)
@@ -33,26 +30,20 @@ const cancelEdit = () => {
 const saveEdit = async (e: React.FormEvent) => {
     e.preventDefault()
 
- const result = await updateAthlete({
-        ...athlete,
+updateVenue({
+        ...venue,
         name,
-        gender,
-        price,
+        capacity,
         image
     })
 
-    if(result.success) {
-        setIsEditing(false)
-    } else {
-        alert("Could not update athlete")
-    }
+    setIsEditing(false)
 }
 
 
 
 const handleDelete = async () => {
-    if (athlete.id == null) return
-    await deleteAthlete(athlete.id)
+    await deleteVenue(venue.id!)
 }
 
     return (
@@ -64,18 +55,16 @@ const handleDelete = async () => {
         {!isEditing ? ( 
             <>
                 <img 
-                src={athlete.image} 
-                alt={athlete.name}
-                className="h-40 w-60 rounded-xl m-4"
+                src={venue.image} 
+                alt={venue.name}
+                className="h-40 w-60 shadow-ms rounded-xl m-4"
                 onError={(e) => {
                     e.currentTarget.src = imagePlaceholder
                 }}
                 />
-                <h3 className="text-lg font-semibold"> {athlete.name}</h3>
-                <p>ID: {athlete.id}</p>
-                <p >Gender: {athlete.gender}</p>
-                <p>Price: {athlete.price}</p>
-                <p>Purchase status: {athlete.purchasedStatus === true ? "Purchased" : "Not purchased"}</p> 
+                <h3 className="text-lg font-semibold"> {venue.name}</h3>
+                <p>ID: {venue.id}</p>
+                <p >Capacity {venue.capacity}</p>
                 <div className="flex justify-center gap-3 mt-4">
                     <button
                     onClick={startEdit}
@@ -107,8 +96,8 @@ const handleDelete = async () => {
         <form onSubmit={saveEdit} className="w-full max-w-[300px] mx-auto" >
 
             <img 
-                src={athlete.image} 
-                alt={athlete.name}
+                src={venue.image} 
+                alt={venue.name}
                 className="h-40 w-60 rounded-xl m-4"
                 onError={(e) => {
                     e.currentTarget.src = imagePlaceholder
@@ -124,25 +113,12 @@ const handleDelete = async () => {
                         />
                     </div>
                     <div className="grid grid-cols-[110px_1fr] items-center gap-2">
-                        <label>Gender: </label>
-                        <select 
-                        value={gender}
-                        onChange={(e) => setGender(e.target.value)} 
+                        <label>Capacity </label>
+                        <input
+                        value={capacity}
+                        onChange={(e) => setCapacity(Number(e.target.value))} 
                         className="border rounded px-2 py-1 w-40" 
-                        >
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                            <option value="Other">Other</option>
-                        </select>
-                    </div>
-                    <div className="grid grid-cols-[110px_1fr] items-center gap-2">
-                        <label>Price: </label>
-                        <input 
-                        type="number"
-                        value={price}
-                        onChange={(e) => setPrice(Number(e.target.value))}  
-                        className="border rounded px-2 py-1 w-40"
-                        />
+                       />
                     </div>
                     <div className="grid grid-cols-[110px_1fr] w-full items-center gap-2    ">
                         <label>Image URL: </label>
@@ -175,4 +151,4 @@ const handleDelete = async () => {
     )
 } 
 
-export default AthleteItem
+export default VenueItem

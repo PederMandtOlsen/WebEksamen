@@ -1,20 +1,19 @@
 import { useContext, useRef, useState } from "react"
-import { AthleteContext } from "../../contexts/AthleteContext"
-import type { IAthleteContext } from "../../interfaces/IAthleteContext"
-import type { IAthlete } from "../../interfaces/IAthlete"
+import { VenueContext } from "../../contexts/VenueContext"
+import type { IVenueContext } from "../../interfaces/IVenueContext"
+import type { IVenue } from "../../interfaces/IVenue"
 
-const AthleteForm = () => {
+const VenueManager = () => {
     const [statusMessage, setStatusMessage] = useState<string>("")
     const [isOk, setIsOk] = useState<boolean | null>(null)
 
 
-const {addAthlete} = useContext(AthleteContext) as IAthleteContext
+const {addVenue} = useContext(VenueContext) as IVenueContext
 
 //Kan være ønskelig å bruke useState for å holde på verdien hvis man går ut av AthleteRegisterPage, men for kode variasjon bruker vi useRef
 
 const nameInput = useRef<HTMLInputElement | null>(null)
-const genderInput = useRef<HTMLSelectElement | null>(null)
-const priceInput = useRef<HTMLInputElement | null>(null)
+const capacityInput = useRef<HTMLInputElement | null>(null)
 const imageInput = useRef<HTMLInputElement | null>(null)
 
 const updateStatusMessage = (message: string, ok: boolean) => {
@@ -27,36 +26,31 @@ const updateStatusMessage = (message: string, ok: boolean) => {
         }, 5000)
     }
 
-const handleAddAthlete = async () => {
+const handleAddVenue = async () => {
     if (
         nameInput.current &&
-        genderInput.current &&
-        priceInput.current &&
+        capacityInput.current &&
         imageInput.current &&
         nameInput.current.value.trim() !== "" &&
-        genderInput.current.value.trim() !== "" &&
-        priceInput.current.value.trim() !== "" &&
+        capacityInput.current.value.trim() !== "" && // se om det er riktig med string her
         imageInput.current.value.trim() !== ""
     ) {
-        const newAthlete: IAthlete = {
+        const newVenue: IVenue = {
             name: nameInput.current.value,
-            gender: genderInput.current.value,
-            price: Number(priceInput.current.value),
+            capacity: Number(capacityInput.current.value),
             image: imageInput.current.value,
-            purchasedStatus: false
         };
 
-        const response = await addAthlete(newAthlete)
+        const response = await addVenue(newVenue)
 
         if (response.success) {
-            updateStatusMessage("Athlete saved", true)
+            updateStatusMessage("Venue saved", true)
 
             nameInput.current.value = ""
-            genderInput.current.value = ""
-            priceInput.current.value = ""
+            capacityInput.current.value = ""
             imageInput.current.value = ""
         } else {
-            updateStatusMessage("Something went wrong trying to save athlete", false)
+            updateStatusMessage("Something went wrong trying to save the venue", false)
         } 
     }
         else {
@@ -66,24 +60,18 @@ const handleAddAthlete = async () => {
 
     return (
     <section className="p-4 border rounded w-100">
-        <h2 className="text-lg mb-4">Register a new athlete</h2>
+        <h2 className="text-lg mb-4">Register a new venue</h2>
         <div className="grid gap-2 ">
             <label>Name</label>
             <input ref={nameInput} type="text" className="border rounded p-1" placeholder="Name" />
-            <label>Gender</label>
-            <select ref={genderInput} className="border rounded p-1">
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-                <option value="Other">Other</option>
-            </select>
-            <label>Price</label>
-            <input ref={priceInput} type="number" className="border rounded p-1" placeholder="Price" />
+            <label>Capacity</label>
+            <input ref={capacityInput} type="number" className="border rounded p-1" placeholder="Price" />
             <label>Image URL</label>
             <input ref={imageInput} type="text" className="border rounded p-1" placeholder="Image url" />
         </div>
 
         <button 
-        onClick={handleAddAthlete}
+        onClick={handleAddVenue}
         className="border rounded px-2 py-1 mt-4 mb-2"
         >
             Lagre
@@ -97,5 +85,5 @@ const handleAddAthlete = async () => {
 }    
 
 
-export default AthleteForm
+export default VenueManager
 
