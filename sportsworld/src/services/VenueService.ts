@@ -94,13 +94,11 @@ const deleteVenue = async (id: number) : Promise<IDefaultResponse>=> {
 
 const putVenue = async (editedVenue: IVenue) : Promise<IVenueResponse> => {
     try {
-        const response = await axios.put(endpoint, editedVenue);
-
-        console.log(response) 
+        const response = await axios.put(`${endpoint}/${editedVenue.id}`, editedVenue);
 
         return {
             success: true,
-            data: response.data
+            data: response.data ?? editedVenue
         }
         
     } catch {

@@ -50,7 +50,7 @@ const AthleteSearchByName = () => {
                             <li>Name: {athlete?.name}</li>
                             <li>Gender: {athlete?.gender}</li>
                             <li>Price: {athlete?.price}</li>
-                            <li>Purchase status: {athlete?.purchasedStatus}</li>
+                            <li>Purchase status: {athlete?.purchasedStatus ? "Purchased" : "Not purchased"}</li>
                         </div>
                     ) )}
                 </ul>

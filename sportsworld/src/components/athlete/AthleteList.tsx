@@ -21,7 +21,7 @@ const AthleteList = () => {
     }
 
     return (
-        <section className="mx-auto max-w-6xl p-6">
+        <section className="mx-auto max-w-6xl ">
              <section className="
         grid gap-8
         grid-cols-1

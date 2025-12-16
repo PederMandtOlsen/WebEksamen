@@ -4,33 +4,34 @@ import type { IVenueContext } from "../../interfaces/IVenueContext";
 import { VenueContext } from "../../contexts/VenueContext";
 
 
-const VenueList = () => {
+const VenueList = ({ allowEdit = false}: {allowEdit?: boolean}) => {
 
     const {venues} = useContext(VenueContext) as IVenueContext
 
     const getVenueJSX = () => {
-        const venueJSX = venues.map( (venue, index) => {
+        const venueJSX = venues.map( (venue) => {
             return (
                 <VenueItem
-                key={"venue" + index}
+                key={venue.id}
                 venue={venue}
+                allowEdit={allowEdit}
                 /> 
             ) 
         }); 
         return venueJSX;
+    };
+
+    if (venues.length === 0) {
+        return (
+            <p>No venues available</p>
+        )
     }
 
+
     return (
-        <section className="mx-auto max-w-6xl p-6">
-             <section className="
-        grid gap-8
-        grid-cols-1
-        sm:grid-cols-2
-        lg:grid-cols-3
-        ">
+             <section className=" grid gap-8 grid-cols-1 md:grid-cols-2 bg">
                 {getVenueJSX()}
             </section>
-        </section>
     )
 
 }

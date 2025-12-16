@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { VenueContext } from "../../contexts/VenueContext";
 import type { IVenueContext } from "../../interfaces/IVenueContext";
 import imagePlaceholder from  "../../assets/images/placeholder.png";
@@ -6,7 +6,8 @@ import type { IVenue } from "../../interfaces/IVenue";
 
 
 
-const VenueItem = ({venue}: {venue: IVenue}) => {
+
+const VenueItem = ({venue, allowEdit = false}: {venue: IVenue; allowEdit?: boolean}) => {
 
 const {deleteVenue, updateVenue} = useContext(VenueContext) as IVenueContext
 
@@ -16,12 +17,15 @@ const [name, setName] = useState(venue.name)
 const [capacity, setCapacity] = useState(venue.capacity)
 const [image, setImage] = useState(venue.image)
 
-const startEdit = () => {
+useEffect(() => {
     setName(venue.name)
     setCapacity(venue.capacity)
     setImage(venue.image)
-    setIsEditing(true)
-}
+}, [venue.name, venue.capacity, venue.image])
+
+const startEdit = () => { 
+    if (!allowEdit) return
+    setIsEditing(true) }
 
 const cancelEdit = () => {
     setIsEditing(false)
@@ -30,42 +34,53 @@ const cancelEdit = () => {
 const saveEdit = async (e: React.FormEvent) => {
     e.preventDefault()
 
-updateVenue({
+ const result = await updateVenue({
         ...venue,
         name,
         capacity,
         image
     })
 
-    setIsEditing(false)
+    if(result.success) {
+        setIsEditing(false)
+    } else {
+        alert("Could not update Venue")
+    }
 }
 
 
 
 const handleDelete = async () => {
-    await deleteVenue(venue.id!)
+    if (!allowEdit) return
+    if (venue.id == null) return
+    await deleteVenue(venue.id)
 }
+
+const showEditForm = allowEdit && isEditing
 
     return (
         <article className="
-        p-4 border rounded-xl
+        p-4 rounded-xl
         flex flex-col items-center text-center
+        bg-white
         ">
 
-        {!isEditing ? ( 
+        {!showEditForm ? ( 
             <>
                 <img 
                 src={venue.image} 
                 alt={venue.name}
-                className="h-40 w-60 shadow-ms rounded-xl m-4"
+                className="h-40 w-60 rounded-xl m-4"
                 onError={(e) => {
                     e.currentTarget.src = imagePlaceholder
                 }}
                 />
                 <h3 className="text-lg font-semibold"> {venue.name}</h3>
                 <p>ID: {venue.id}</p>
-                <p >Capacity {venue.capacity}</p>
-                <div className="flex justify-center gap-3 mt-4">
+                <p>Capacity: {venue.capacity}</p>
+
+                {allowEdit && (
+                    <div className="flex justify-center gap-3 mt-4">
                     <button
                     onClick={startEdit}
                     className="
@@ -90,6 +105,8 @@ const handleDelete = async () => {
                 ">
                     Delete</button>
                 </div>
+                )}
+             
         </>
       ) : (
 
@@ -113,12 +130,13 @@ const handleDelete = async () => {
                         />
                     </div>
                     <div className="grid grid-cols-[110px_1fr] items-center gap-2">
-                        <label>Capacity </label>
-                        <input
+                        <label>Capacity: </label>
+                        <input 
+                        type="number"
                         value={capacity}
-                        onChange={(e) => setCapacity(Number(e.target.value))} 
-                        className="border rounded px-2 py-1 w-40" 
-                       />
+                        onChange={(e) => setCapacity(Number(e.target.value))}  
+                        className="border rounded px-2 py-1 w-40"
+                        />
                     </div>
                     <div className="grid grid-cols-[110px_1fr] w-full items-center gap-2    ">
                         <label>Image URL: </label>

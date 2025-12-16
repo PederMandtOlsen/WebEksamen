@@ -8,5 +8,5 @@ export interface IVenueContext {
     getVenueQuantity: () => number
     addVenue: (newVenue: IVenue) => Promise<IDefaultResponse>
     deleteVenue: (id: number) => Promise<IDefaultResponse>
-    updateVenue: (venue: IVenue) => void
+    updateVenue: (venue: IVenue) => Promise<IDefaultResponse>
 }

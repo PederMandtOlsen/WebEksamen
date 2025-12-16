@@ -72,17 +72,19 @@ export const VenueProvider = ({children} : Props) => {
             const response = await VenueService.putVenue(updated)
     
             if(response.success === true) {
-                const saved: IVenue = response.data ?? updated
-    
-                setVenues(prev => 
-                    prev.map(venue => venue.id === saved.id ? saved: venue ) 
-                )
-    
+                await refreshVenues(); 
+        
                 return {success: true}
             }
     
             return {success: false}
         };
+
+        const refreshVenues = async () => {
+        await setVenuesFromService();
+    
+    };
+
 
 
         return (

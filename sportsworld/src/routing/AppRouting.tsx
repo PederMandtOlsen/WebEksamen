@@ -4,6 +4,7 @@ import AthleteRegisterPage from '../pages/athlete/AthleteRegisterPage';
 import PageNavigation from '../components/shared/PageNavigation';
 import DashboardPage from '../pages/dashboard/DashboardPage';
 import VenueManagerPage from '../pages/venue/VenueManagerPage';
+import VenuePage from '../pages/venue/VenuePage';
 
 
 const AppRouting = () => {
@@ -18,6 +19,7 @@ const AppRouting = () => {
             <Route path='/athlete-register' element={<AthleteRegisterPage/>}/>
             <Route path='/dashboard' element={<DashboardPage/>}/>
             <Route path='/manage-venues' element={<VenueManagerPage/>}/>
+            <Route path='/venues' element={<VenuePage/>}/>
         </Routes> 
         </BrowserRouter> 
     ) 
