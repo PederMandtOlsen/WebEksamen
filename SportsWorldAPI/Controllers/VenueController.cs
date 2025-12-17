@@ -65,7 +65,7 @@ public class VenueController(SportsWorldContext _sportsWorldContext) : Controlle
     public async Task<ActionResult<Venue>> Post(Venue newVenue)
     {
 
-        _sportsWorldContext.Venues.Add(newVenue);
+        _sportsWorldContext.Venues.Add(newVenue); 
         await _sportsWorldContext.SaveChangesAsync();
         return CreatedAtAction("Get", new { id = newVenue.Id }, newVenue);
     }

@@ -41,7 +41,7 @@ const AthleteForm = () => {
             priceInput.current.value.trim() === "" ||
             imageFile == null
         ) {
-            updateStatusMessage("You need to fill all fields", false);
+            updateStatusMessage("You need to fill in all fields", false);
             return;
         }
 
