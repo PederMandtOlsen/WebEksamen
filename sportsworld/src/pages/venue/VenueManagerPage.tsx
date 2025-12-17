@@ -9,12 +9,12 @@ const VenueManagerPage = () => {
             <section className="grid grid-cols-12 gap-8 max-w-7xl mx-auto px-6">
 
                 <section className="col-span-12 lg:col-span-4 bg-gray-100 rounded-lg p-6 h-fit shadow-md">
-                    <VenueForm/>
+                    <VenueForm />
                 </section>
 
                 <section className="col-span-12 lg:col-span-8 bg-gray-100 rounded-lg p-6 shadow-md">
-                    <VenueList allowEdit/>
-                </section>  
+                    <VenueList allowEdit />
+                </section>
             </section>
         </>
     )

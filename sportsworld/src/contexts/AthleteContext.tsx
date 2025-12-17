@@ -9,47 +9,47 @@ import type { IDefaultResponse } from "../interfaces/ResponseInterfaces";
 export const AthleteContext = createContext<IAthleteContext | null>(null)
 
 
-interface Props {children: ReactNode}
+interface Props { children: ReactNode }
 
 
-export const AthleteProvider = ({children} : Props) => {
+export const AthleteProvider = ({ children }: Props) => {
 
     const [athletes, setAthletes] = useState<IAthlete[]>([])
 
-    useEffect( () => {
-        setAthletesFromService(); 
+    useEffect(() => {
+        setAthletesFromService();
 
-    }, [] ); //Hindrer http spam
+    }, []); //Hindrer http spam
 
 
     const setAthletesFromService = async () => {
-    const response = await AthleteService.getAllAthletes();
+        const response = await AthleteService.getAllAthletes();
 
-    if (response.success === true && response.data != null) {
-        setAthletes(response.data);
+        if (response.success === true && response.data != null) {
+            setAthletes(response.data);
 
-    } else {
-        console.warn("Klarte ikke å hente atleter");
-    }
-};
+        } else {
+            console.warn("Klarte ikke å hente atleter");
+        }
+    };
 
 
-    const getAthleteQuantity = () : number => {
+    const getAthleteQuantity = (): number => {
         return athletes.length;
     }
 
-    const addAthlete = async (newAthlete: IAthlete) : Promise<IDefaultResponse> => {
+    const addAthlete = async (newAthlete: IAthlete): Promise<IDefaultResponse> => {
 
         const response = await AthleteService.postAthlete(newAthlete);
 
-        if(response.success === true && response.data != null) {
-            
-            const newAthleteWithId : IAthlete = response.data; 
+        if (response.success === true && response.data != null) {
+
+            const newAthleteWithId: IAthlete = response.data;
 
             setAthletes(
-                prev => [newAthleteWithId, ...prev] 
+                prev => [newAthleteWithId, ...prev]
             );
-        } 
+        }
 
         return response
 
@@ -59,7 +59,7 @@ export const AthleteProvider = ({children} : Props) => {
     const deleteAthlete = async (id: number): Promise<IDefaultResponse> => {
         const response = await AthleteService.deleteAthlete(id);
 
-        if(response.success === true) {
+        if (response.success === true) {
             setAthletes(prev => prev.filter(athlete => athlete.id !== id))
         }
 
@@ -69,15 +69,15 @@ export const AthleteProvider = ({children} : Props) => {
     const updateAthlete = async (updated: IAthlete): Promise<IDefaultResponse> => {
         const response = await AthleteService.putAthlete(updated)
 
-        if(response.success === true) {
+        if (response.success === true) {
             await refreshAthletes()
 
-            return {success: true}
+            return { success: true }
         }
 
-        return {success: false}
+        return { success: false }
     };
-    
+
 
     const refreshAthletes = async () => {
         await setAthletesFromService();
@@ -85,16 +85,18 @@ export const AthleteProvider = ({children} : Props) => {
 
 
 
-        return (
-            <AthleteContext.Provider value =  {{
-                athletes,
-                getAthleteQuantity,
-                addAthlete,
-                deleteAthlete,
-                updateAthlete,
-                refreshAthletes
-            }}> 
+
+
+    return (
+        <AthleteContext.Provider value={{
+            athletes,
+            getAthleteQuantity,
+            addAthlete,
+            deleteAthlete,
+            updateAthlete,
+            refreshAthletes,
+        }}>
             {children}
         </AthleteContext.Provider>
-        )
+    )
 };

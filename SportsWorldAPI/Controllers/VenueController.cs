@@ -20,7 +20,7 @@ public class VenueController(SportsWorldContext _sportsWorldContext) : Controlle
         return venues;
     }
 
-    [HttpGet("{id}")] 
+    [HttpGet("{id}")]
 
     public async Task<ActionResult<Venue>> GetById(int id)
     {
@@ -28,28 +28,31 @@ public class VenueController(SportsWorldContext _sportsWorldContext) : Controlle
         if (venue != null)
         {
             return Ok(venue);
-        } else
+        }
+        else
         {
             return NotFound($"No venue with id: {id} were found");
         }
     }
 
-    [HttpGet("get-by-name/{name}")]  
+    [HttpGet("get-by-name/{name}")]
     public async Task<ActionResult<List<Venue>>> GetByName(string name)
     {
 
-        try {
-        List<Venue> venues = await _sportsWorldContext.Venues
-        .Where(
-            venue =>
-            venue.Name != null && 
-            venue.Name.ToLower().Contains(name.ToLower())
-        )
-        .ToListAsync();
+        try
+        {
+            List<Venue> venues = await _sportsWorldContext.Venues
+            .Where(
+                venue =>
+                venue.Name != null &&
+                venue.Name.ToLower().Contains(name.ToLower())
+            )
+            .ToListAsync();
 
-        return Ok(venues);
+            return Ok(venues);
 
-        } catch (Exception e)
+        }
+        catch (Exception e)
         {
 
             Console.WriteLine("Error in getbyname");
@@ -57,32 +60,32 @@ public class VenueController(SportsWorldContext _sportsWorldContext) : Controlle
         }
     }
 
-    [HttpPost] 
+    [HttpPost]
 
     public async Task<ActionResult<Venue>> Post(Venue newVenue)
     {
 
-       _sportsWorldContext.Venues.Add(newVenue);
-       await _sportsWorldContext.SaveChangesAsync();
-       return CreatedAtAction("Get", new {id = newVenue.Id}, newVenue);
+        _sportsWorldContext.Venues.Add(newVenue);
+        await _sportsWorldContext.SaveChangesAsync();
+        return CreatedAtAction("Get", new { id = newVenue.Id }, newVenue);
     }
-    
-    [HttpPut("{id}")] 
+
+    [HttpPut("{id}")]
 
     public async Task<ActionResult> Put(int id, Venue editedVenue)
     {
 
-        if (id != editedVenue.Id) 
+        if (id != editedVenue.Id)
             return BadRequest("Id dont match");
 
-       _sportsWorldContext.Entry(editedVenue).State = EntityState.Modified;
-       await _sportsWorldContext.SaveChangesAsync();
-       return NoContent();
+        _sportsWorldContext.Entry(editedVenue).State = EntityState.Modified;
+        await _sportsWorldContext.SaveChangesAsync();
+        return NoContent();
     }
 
 
 
-    [HttpDelete("{id}")] 
+    [HttpDelete("{id}")]
 
     public async Task<ActionResult<Venue>> Delete(int id)
     {
@@ -92,9 +95,10 @@ public class VenueController(SportsWorldContext _sportsWorldContext) : Controlle
             _sportsWorldContext.Venues.Remove(venue);
             await _sportsWorldContext.SaveChangesAsync();
             return NoContent();
-        } else
+        }
+        else
         {
             return NotFound();
         }
     }
-} 
+}

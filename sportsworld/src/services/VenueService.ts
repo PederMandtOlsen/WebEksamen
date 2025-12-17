@@ -4,14 +4,14 @@ import type { IDefaultResponse, IVenuesResponse, IVenueResponse } from "../inter
 
 const endpoint = "http://localhost:5180/api/venue";
 
-const getAllVenues = async () : Promise<IVenuesResponse> => {
+const getAllVenues = async (): Promise<IVenuesResponse> => {
     try {
         const response = await axios.get(endpoint);
         return {
             success: true,
             data: response.data
         }
-        
+
     } catch {
         return {
             success: false,
@@ -20,14 +20,14 @@ const getAllVenues = async () : Promise<IVenuesResponse> => {
     }
 }
 
-const getVenueById = async (id: number) : Promise<IVenueResponse> => {
+const getVenueById = async (id: number): Promise<IVenueResponse> => {
     try {
         const response = await axios.get(`${endpoint}/${id}`);
         return {
             success: true,
             data: response.data
         }
-        
+
     } catch {
         return {
             success: false,
@@ -36,13 +36,13 @@ const getVenueById = async (id: number) : Promise<IVenueResponse> => {
     }
 }
 
-const searchByName = async (name: string) : Promise<IVenuesResponse> => {
+const searchByName = async (name: string): Promise<IVenuesResponse> => {
     try {
 
         const response = await axios.get(`${endpoint}/get-by-name/${name}`); // nevne hvor jeg fant encodeURICOmp
         return {
             success: true,
-            data: response.data 
+            data: response.data
         }
 
     } catch (error) {
@@ -56,7 +56,7 @@ const searchByName = async (name: string) : Promise<IVenuesResponse> => {
 
 
 
-const postVenue = async (venue: IVenue) : Promise<IVenueResponse> => {
+const postVenue = async (venue: IVenue): Promise<IVenueResponse> => {
     try {
         const response = await axios.post(endpoint, venue);
 
@@ -64,7 +64,7 @@ const postVenue = async (venue: IVenue) : Promise<IVenueResponse> => {
             success: true,
             data: response.data
         }
-        
+
     } catch {
         return {
             success: false,
@@ -74,9 +74,9 @@ const postVenue = async (venue: IVenue) : Promise<IVenueResponse> => {
 }
 
 
-const deleteVenue = async (id: number) : Promise<IDefaultResponse>=> {
+const deleteVenue = async (id: number): Promise<IDefaultResponse> => {
     try {
-       const response = await axios.delete(`${endpoint}/${id}`)
+        await axios.delete(`${endpoint}/${id}`)
 
         return {
             success: true
@@ -88,7 +88,7 @@ const deleteVenue = async (id: number) : Promise<IDefaultResponse>=> {
     }
 }
 
-const putVenue = async (editedVenue: IVenue) : Promise<IVenueResponse> => {
+const putVenue = async (editedVenue: IVenue): Promise<IVenueResponse> => {
     try {
         const response = await axios.put(`${endpoint}/${editedVenue.id}`, editedVenue);
 
@@ -96,7 +96,7 @@ const putVenue = async (editedVenue: IVenue) : Promise<IVenueResponse> => {
             success: true,
             data: response.data ?? editedVenue
         }
-        
+
     } catch {
         return {
             success: false,

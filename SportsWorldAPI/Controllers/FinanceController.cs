@@ -48,7 +48,7 @@ public class FinanceController(SportsWorldContext _sportsWorldContext) : Control
         {
             finance.MoneyLeft += amount;
         }
-        
+
         await _sportsWorldContext.SaveChangesAsync();
         return Ok(finance);
     }
@@ -88,7 +88,7 @@ public class FinanceController(SportsWorldContext _sportsWorldContext) : Control
         finance.NumberOfPurchases += 1;
 
         await _sportsWorldContext.SaveChangesAsync();
-        
+
         return Ok(finance);
     }
 }

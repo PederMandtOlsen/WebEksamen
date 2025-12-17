@@ -1,5 +1,6 @@
 import type { IAthlete } from "../../interfaces/IAthlete";
-import imagePlaceholder from  "../../assets/images/placeholder.png";
+import AthleteService from "../../services/AthleteService";
+import imagePlaceholder from "../../assets/images/placeholder.png";
 
 interface PurchaseSectionProps {
     unpurchasedAthletes: IAthlete[];
@@ -9,34 +10,24 @@ interface PurchaseSectionProps {
 const PurchaseSection = ({ unpurchasedAthletes, onPurchaseAthlete }: PurchaseSectionProps) => {
     return (
         <section className="bg-white rounded-lg shadow-md p-6">
-            <header>
-                <h2 className="text-2xl font-bold mb-4">Purchase Athletes</h2>
-            </header>
+            <h2 className="text-2xl font-bold mb-4">Purchase Athletes</h2>
 
             <ul className="grid-container">
                 {unpurchasedAthletes.map((athlete) => (
-
                     <li key={athlete.id} className="grid-container__item">
-                        
-                        <img 
-                            src={athlete.image} 
+                        <img
+                            src={AthleteService.getImageEndpoint() + athlete.image}
                             alt={athlete.name}
                             className="img-styling"
-                            onError={(e) => {
-                                e.currentTarget.src = imagePlaceholder
-                            }}
+                            onError={(e) => (e.currentTarget.src = imagePlaceholder)}
                         />
 
                         <h3>{athlete.name}</h3>
-                            <p>
-                                {athlete.gender} - ${athlete.price}
-                            </p>
+                        <p>{athlete.gender} – ${athlete.price}</p>
 
-                            
-                        <button 
+                        <button
                             onClick={() => onPurchaseAthlete(athlete.id!)}
                             className="btn bg-green-400"
-                            aria-label={`Purchase ${athlete.name}`}
                         >
                             Purchase
                         </button>
@@ -47,4 +38,4 @@ const PurchaseSection = ({ unpurchasedAthletes, onPurchaseAthlete }: PurchaseSec
     );
 };
 
-export default PurchaseSection; 
+export default PurchaseSection;

@@ -21,7 +21,7 @@ public class AthleteController(SportsWorldContext _sportsWorldContext) : Control
         return athletes;
     }
 
-    [HttpGet("{id}")] 
+    [HttpGet("{id}")]
 
     public async Task<ActionResult<Athlete>> GetById(int id)
     {
@@ -29,7 +29,8 @@ public class AthleteController(SportsWorldContext _sportsWorldContext) : Control
         if (athlete != null)
         {
             return Ok(athlete);
-        } else
+        }
+        else
         {
             return NotFound($"Not athlete with id: {id} was found");
         }
@@ -37,22 +38,24 @@ public class AthleteController(SportsWorldContext _sportsWorldContext) : Control
 
 
 
-    [HttpGet("get-by-name/{name}")]  
+    [HttpGet("get-by-name/{name}")]
     public async Task<ActionResult<List<Athlete>>> GetByName(string name)
     {
 
-        try {
-        List<Athlete> athletes = await _sportsWorldContext.Athletes
-        .Where(
-            athlete =>
-            athlete.Name != null && 
-            athlete.Name.ToLower().Contains(name.ToLower())
-        )
-        .ToListAsync();
+        try
+        {
+            List<Athlete> athletes = await _sportsWorldContext.Athletes
+            .Where(
+                athlete =>
+                athlete.Name != null &&
+                athlete.Name.ToLower().Contains(name.ToLower())
+            )
+            .ToListAsync();
 
-        return Ok(athletes);
+            return Ok(athletes);
 
-        } catch (Exception e)
+        }
+        catch (Exception e)
         {
 
             Console.WriteLine("Error in getbyname");
@@ -60,32 +63,32 @@ public class AthleteController(SportsWorldContext _sportsWorldContext) : Control
         }
     }
 
-    [HttpPost] 
+    [HttpPost]
 
     public async Task<ActionResult<Athlete>> Post(Athlete newAthlete)
     {
 
-       _sportsWorldContext.Athletes.Add(newAthlete);
-       await _sportsWorldContext.SaveChangesAsync();
-       return CreatedAtAction("Get", new {id = newAthlete.Id}, newAthlete);
+        _sportsWorldContext.Athletes.Add(newAthlete);
+        await _sportsWorldContext.SaveChangesAsync();
+        return CreatedAtAction("Get", new { id = newAthlete.Id }, newAthlete);
     }
-    
-    [HttpPut("{id}")] 
+
+    [HttpPut("{id}")]
 
     public async Task<ActionResult<Athlete>> Put(int id, Athlete editedAthlete)
     {
 
-        if (id != editedAthlete.Id) 
+        if (id != editedAthlete.Id)
             return BadRequest("Id dont match");
 
-       _sportsWorldContext.Entry(editedAthlete).State = EntityState.Modified;
-       await _sportsWorldContext.SaveChangesAsync();
-       return NoContent();
+        _sportsWorldContext.Entry(editedAthlete).State = EntityState.Modified;
+        await _sportsWorldContext.SaveChangesAsync();
+        return NoContent();
     }
 
 
 
-    [HttpDelete("{id}")] 
+    [HttpDelete("{id}")]
 
     public async Task<ActionResult<Athlete>> Delete(int id)
     {
@@ -95,9 +98,10 @@ public class AthleteController(SportsWorldContext _sportsWorldContext) : Control
             _sportsWorldContext.Athletes.Remove(athlete);
             await _sportsWorldContext.SaveChangesAsync();
             return NoContent();
-        } else
+        }
+        else
         {
             return NotFound();
         }
     }
-} 
+}

@@ -30,7 +30,7 @@ const LoanSection = ({ onAddLoan }: LoanSectionProps) => {
                     placeholder="Enter amount"
                     className="p-2"
                 />
-                <button 
+                <button
                     onClick={handleAddLoan}
                     className="btn bg-blue-400"
                 >

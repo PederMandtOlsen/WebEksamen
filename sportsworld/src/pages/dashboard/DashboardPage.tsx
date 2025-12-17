@@ -26,8 +26,8 @@ const DashboardPage = () => {
             {financeContext.message && (
                 <div>
                     {financeContext.message}
-                    <button 
-                        onClick={() => financeContext.setMessage(null)} 
+                    <button
+                        onClick={() => financeContext.setMessage(null)}
                         className="ml-4 text-blue-900"
                     >
                     </button>
@@ -39,9 +39,9 @@ const DashboardPage = () => {
                     <LoanSection onAddLoan={financeContext.addLoan} />
                 </section>
                 <section className="w-3/4">
-                    <PurchaseSection 
+                    <PurchaseSection
                         unpurchasedAthletes={unpurchasedAthletes}
-                        onPurchaseAthlete={handlePurchase} 
+                        onPurchaseAthlete={handlePurchase}
                     />
                 </section>
             </div>

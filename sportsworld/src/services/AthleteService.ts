@@ -4,14 +4,14 @@ import type { IDefaultResponse, IAthletesResponse, IAthleteResponse } from "../i
 
 const endpoint = "http://localhost:5180/api/athlete";
 
-const getAllAthletes = async () : Promise<IAthletesResponse> => {
+const getAllAthletes = async (): Promise<IAthletesResponse> => {
     try {
         const response = await axios.get(endpoint);
         return {
             success: true,
             data: response.data
         }
-        
+
     } catch {
         return {
             success: false,
@@ -20,14 +20,14 @@ const getAllAthletes = async () : Promise<IAthletesResponse> => {
     }
 }
 
-const getAthleteById = async (id: number) : Promise<IAthleteResponse> => {
+const getAthleteById = async (id: number): Promise<IAthleteResponse> => {
     try {
         const response = await axios.get(`${endpoint}/${id}`);
         return {
             success: true,
             data: response.data
         }
-        
+
     } catch {
         return {
             success: false,
@@ -36,13 +36,13 @@ const getAthleteById = async (id: number) : Promise<IAthleteResponse> => {
     }
 }
 
-const searchByName = async (name: string) : Promise<IAthletesResponse> => {
+const searchByName = async (name: string): Promise<IAthletesResponse> => {
     try {
 
         const response = await axios.get(`${endpoint}/get-by-name/${name}`);
         return {
             success: true,
-            data: response.data 
+            data: response.data
         }
 
     } catch (error) {
@@ -56,7 +56,7 @@ const searchByName = async (name: string) : Promise<IAthletesResponse> => {
 
 
 
-const postAthlete = async (athlete: IAthlete) : Promise<IAthleteResponse> => {
+const postAthlete = async (athlete: IAthlete): Promise<IAthleteResponse> => {
     try {
         const response = await axios.post(endpoint, athlete);
 
@@ -65,7 +65,7 @@ const postAthlete = async (athlete: IAthlete) : Promise<IAthleteResponse> => {
             success: true,
             data: response.data
         }
-        
+
     } catch {
         return {
             success: false,
@@ -75,10 +75,9 @@ const postAthlete = async (athlete: IAthlete) : Promise<IAthleteResponse> => {
 }
 
 
-const deleteAthlete = async (id: number) : Promise<IDefaultResponse>=> {
+const deleteAthlete = async (id: number): Promise<IDefaultResponse> => {
     try {
-       const response = await axios.delete(`${endpoint}/${id}`)
-
+        await axios.delete(`${endpoint}/${id}`)
 
         return {
             success: true
@@ -90,15 +89,15 @@ const deleteAthlete = async (id: number) : Promise<IDefaultResponse>=> {
     }
 }
 
-const putAthlete = async (editedAthlete: IAthlete) : Promise<IAthleteResponse> => {
+const putAthlete = async (editedAthlete: IAthlete): Promise<IAthleteResponse> => {
     try {
-        const response = await axios.put(`${endpoint}/${editedAthlete.id}`,editedAthlete);
+        const response = await axios.put(`${endpoint}/${editedAthlete.id}`, editedAthlete);
 
         return {
             success: true,
             data: response.data ?? editedAthlete
         }
-        
+
     } catch {
         return {
             success: false,
@@ -107,11 +106,15 @@ const putAthlete = async (editedAthlete: IAthlete) : Promise<IAthleteResponse> =
     }
 }
 
+const getImageEndpoint = () => "http://localhost:5180";
+
+
 export default {
     getAllAthletes,
     getAthleteById,
     searchByName,
     postAthlete,
     deleteAthlete,
-    putAthlete
+    putAthlete,
+    getImageEndpoint
 }

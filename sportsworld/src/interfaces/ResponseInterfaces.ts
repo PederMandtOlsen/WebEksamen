@@ -8,7 +8,7 @@ export interface IDefaultResponse {
 
 export interface IAthletesResponse {
     success: boolean
-    data: IAthlete [] | null
+    data: IAthlete[] | null
 }
 
 export interface IAthleteResponse {
@@ -28,5 +28,5 @@ export interface IVenueResponse {
 
 export interface IVenuesResponse {
     success: boolean
-    data: IVenue [] | null
+    data: IVenue[] | null
 }
