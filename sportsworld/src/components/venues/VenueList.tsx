@@ -29,7 +29,7 @@ const VenueList = ({ allowEdit = false}: {allowEdit?: boolean;}) => {
     }
 
     return (
-             <section className=" grid gap-8 grid-cols-1 md:grid-cols-2">
+             <section className=" grid-container">
                 {getVenueJSX()}
             </section>
     )

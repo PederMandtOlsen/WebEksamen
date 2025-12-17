@@ -65,14 +65,14 @@ const handleAddVenue = async () => {
             <label>Name</label>
             <input ref={nameInput} type="text" className="border rounded p-1" placeholder="Name" />
             <label>Capacity</label>
-            <input ref={capacityInput} type="number" className="border rounded p-1" placeholder="Price" />
+            <input ref={capacityInput} type="number" className="border rounded p-1" placeholder="Capacity" />
             <label>Image URL</label>
             <input ref={imageInput} type="text" className="border rounded p-1" placeholder="Image url" />
         </div>
 
         <button 
         onClick={handleAddVenue}
-        className="btn"
+        className="btn mt-4"
         >
             Lagre
         </button>

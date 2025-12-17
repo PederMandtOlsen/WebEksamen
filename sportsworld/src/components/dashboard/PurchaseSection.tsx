@@ -1,4 +1,5 @@
 import type { IAthlete } from "../../interfaces/IAthlete";
+import imagePlaceholder from  "../../assets/images/placeholder.png";
 
 interface PurchaseSectionProps {
     unpurchasedAthletes: IAthlete[];
@@ -7,23 +8,43 @@ interface PurchaseSectionProps {
 
 const PurchaseSection = ({ unpurchasedAthletes, onPurchaseAthlete }: PurchaseSectionProps) => {
     return (
-        <section>
-            <h2>Purchase Athletes</h2>
-            {unpurchasedAthletes.length === 0 ? (
-                <p>All athletes have been purchased!</p>
-            ) : (
-                <div>
-                    {unpurchasedAthletes.map((athlete) => (
-                        <div key={athlete.id}>
-                            <img src={athlete.image} alt={athlete.name} />
-                            <p>{athlete.name} - {athlete.gender} - ${athlete.price}</p>
-                            <button onClick={() => onPurchaseAthlete(athlete.id!)}>Purchase</button>
-                        </div>
-                    ))}
-                </div>
-            )}
+        <section className="bg-white rounded-lg shadow-md p-6">
+            <header>
+                <h2 className="text-2xl font-bold mb-4">Purchase Athletes</h2>
+            </header>
+
+            <ul className="grid-container">
+                {unpurchasedAthletes.map((athlete) => (
+
+                    <li key={athlete.id} className="grid-container__item">
+                        
+                        <img 
+                            src={athlete.image} 
+                            alt={athlete.name}
+                            className="img-styling"
+                            onError={(e) => {
+                                e.currentTarget.src = imagePlaceholder
+                            }}
+                        />
+
+                        <h3>{athlete.name}</h3>
+                            <p>
+                                {athlete.gender} - ${athlete.price}
+                            </p>
+
+                            
+                        <button 
+                            onClick={() => onPurchaseAthlete(athlete.id!)}
+                            className="btn bg-green-400"
+                            aria-label={`Purchase ${athlete.name}`}
+                        >
+                            Purchase
+                        </button>
+                    </li>
+                ))}
+            </ul>
         </section>
     );
 };
 
-export default PurchaseSection;
+export default PurchaseSection; 

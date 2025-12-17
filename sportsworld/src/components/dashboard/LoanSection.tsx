@@ -15,19 +15,29 @@ const LoanSection = ({ onAddLoan }: LoanSectionProps) => {
         }
     };
 
+    const handleLoanAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setLoanAmount(e.target.value);
+    };
+
     return (
-        <section>
-            <h2>Get Loan from Bank</h2>
-            <div>
+        <div className="flex flex-col gap-3">
+            <h2 className="text-xl font-bold">Get Loan from Bank</h2>
+            <div className="flex flex-col gap-2">
                 <input
                     type="number"
                     value={loanAmount}
-                    onChange={(e) => setLoanAmount(e.target.value)}
+                    onChange={handleLoanAmountChange}
                     placeholder="Enter amount"
+                    className="p-2"
                 />
-                <button className="btn" onClick={handleAddLoan}>Add Loan</button>
+                <button 
+                    onClick={handleAddLoan}
+                    className="btn bg-blue-400"
+                >
+                    Add Loan
+                </button>
             </div>
-        </section>
+        </div>
     );
 };
 

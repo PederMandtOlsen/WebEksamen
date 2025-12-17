@@ -20,3 +20,33 @@
     bg-red-500
     hover:bg-red-600
 }
+
+.btn-success{
+    @apply
+    text-white
+    bg-green-500
+    hover:bg-green-600
+}
+
+
+.grid-container{
+    @apply
+    grid 
+    grid-cols-12 
+    gap-8 
+    max-w-7xl 
+    mx-auto
+    px-6
+}
+
+.grid-container__item{
+    @apply
+    col-span-12 
+    lg:col-span-4
+    bg-gray-100 
+    rounded-lg 
+    p-6 
+    h-fit 
+    shadow-md
+}
+

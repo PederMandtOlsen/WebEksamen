@@ -57,8 +57,7 @@ const handleDelete = async () => {
 
     return (
         <article className="
-        p-4 border rounded-xl
-        flex flex-col items-center text-center
+        grid-container__item
         ">
 
         {!isEditing ? ( 
@@ -100,7 +99,7 @@ const handleDelete = async () => {
                 }}
                 />
                 <div className="w-full max-w-[320px] grid gap-3">
-                    <div className="grid grid-cols-[110px_1fr] items-center gap-2">
+                    <div className="grid grid-cols-[110px_1fr] items-center gap-2 mt-4">
                         <label>Name: </label>
                         <input 
                         value={name}
@@ -144,7 +143,7 @@ const handleDelete = async () => {
             <div className="flex justify-center gap-2 mt-4">
                 <button
                 type="submit"
-                className="btn"
+                className="btn btn-success"
                 >Save</button>
                 <button
                 type="button"

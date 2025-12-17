@@ -49,7 +49,7 @@ const VenueSearchById = () => {
                 {venue &&
                 <ul>
                     <li>Name: {venue?.name}</li>
-                    <li>Price: {venue?.capacity}</li>
+                    <li>Capacity: {venue?.capacity}</li>
                 </ul>
                 }
             </div>

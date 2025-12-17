@@ -7,7 +7,7 @@ import type { IVenue } from "../../interfaces/IVenue";
 
 
 
-const VenueItem = ({venue, allowEdit = false}: {venue: IVenue; allowEdit?: boolean}) => {
+const VenueItem = ({venue, allowEdit = false,}: {venue: IVenue; allowEdit?: boolean}) => {
 
 
 const {deleteVenue, updateVenue} = useContext(VenueContext) as IVenueContext
@@ -60,10 +60,9 @@ const handleDelete = async () => {
 const showEditForm = allowEdit && isEditing
 
     return (
+
         <article className="
-        p-4 rounded-xl
-        flex flex-col items-center text-center
-        bg-white
+        grid-container__item
         ">
 
         {!showEditForm ? ( 
@@ -142,7 +141,7 @@ const showEditForm = allowEdit && isEditing
             <div className="flex justify-center gap-2 mt-4">
                 <button
                 type="submit"
-                className="btn"
+                className="btn btn-success"
                 >Save</button>
                 <button
                 type="button"

@@ -22,11 +22,7 @@ const AthleteList = () => {
 
     return (
         <section className="mx-auto max-w-6xl ">
-             <section className="
-        grid gap-8
-        grid-cols-1
-        sm:grid-cols-2
-        lg:grid-cols-3
+             <section className=" grid-container
         ">
                 {getAthleteJSX()}
             </section>
