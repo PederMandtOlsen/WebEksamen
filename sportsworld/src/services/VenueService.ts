@@ -39,7 +39,7 @@ const getVenueById = async (id: number): Promise<IVenueResponse> => {
 const searchByName = async (name: string): Promise<IVenuesResponse> => {
     try {
 
-        const response = await axios.get(`${endpoint}/get-by-name/${name}`); // nevne hvor jeg fant encodeURICOmp
+        const response = await axios.get(`${endpoint}/get-by-name/${name}`);
         return {
             success: true,
             data: response.data

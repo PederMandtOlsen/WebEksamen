@@ -9,7 +9,6 @@
     @apply
     border border-black 
     rounded-xl
-    text-black
     p-2 
     cursor-pointer
 }

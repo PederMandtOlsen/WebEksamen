@@ -58,7 +58,7 @@ const VenueManager = () => {
     }
 
     return (
-        <section className="p-4 border rounded w-88">
+        <section className="p-4 border rounded ">
             <h2 className="text-lg mb-4">Register a new venue</h2>
             <div className="grid gap-2 ">
                 <label>Name</label>
@@ -71,7 +71,7 @@ const VenueManager = () => {
 
             <button
                 onClick={handleAddVenue}
-                className="btn mt-4"
+                className="btn mt-4 bg-black text-white"
             >
                 Lagre
             </button>

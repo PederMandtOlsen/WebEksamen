@@ -11,7 +11,7 @@ const AthleteSearchByName = () => {
     const handleSearch = async () => {
 
         if (!name.trim()) {
-            setStatusMessage("Enter atleast one letter")
+            setStatusMessage("")
             setAthletes([])
             return
         }
@@ -30,7 +30,7 @@ const AthleteSearchByName = () => {
             }
 
         } catch (error) {
-            console.error("Venue search failed:", error)
+            console.error("Athlete search failed:", error)
             setStatusMessage("Something went wrong trying to search")
             setAthletes([])
         }
@@ -49,12 +49,12 @@ const AthleteSearchByName = () => {
                 <p>{statusMessage}</p>
                 <ul>
                     {athletes.map((athlete) => (
-                        <div key={athlete.id}>
-                            <li>Name: {athlete?.name}</li>
-                            <li>Gender: {athlete?.gender}</li>
-                            <li>Price: {athlete?.price}</li>
+                        <li key={athlete.id}>
+                            <li>Name: {athlete.name}</li>
+                            <li>Gender: {athlete.gender}</li>
+                            <li>Price: {athlete.price}</li>
                             <li>Purchase status: {athlete?.purchasedStatus ? "Purchased" : "Not purchased"}</li>
-                        </div>
+                        </li>
                     ))}
                 </ul>
             </div>

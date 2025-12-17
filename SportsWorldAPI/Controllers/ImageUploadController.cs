@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace FunnyHatsAPI.Controllers;
+namespace SportsWorldAPI.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]

@@ -19,7 +19,7 @@ export const VenueProvider = ({ children }: Props) => {
     useEffect(() => {
         setVenuesFromService();
 
-    }, []); //Hindrer http spam
+    }, []); 
 
 
     const setVenuesFromService = async () => {

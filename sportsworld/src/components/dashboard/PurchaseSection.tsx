@@ -20,13 +20,17 @@ const PurchaseSection = ({ unpurchasedAthletes, onPurchaseAthlete }: PurchaseSec
                             alt={athlete.name}
                             className="img-styling"
                             onError={(e) => (e.currentTarget.src = imagePlaceholder)}
-                        />
+                        />  
 
                         <h3>{athlete.name}</h3>
-                        <p>{athlete.gender} – ${athlete.price}</p>
+                        <p>{athlete.gender} - ${athlete.price}</p>
 
                         <button
-                            onClick={() => onPurchaseAthlete(athlete.id!)}
+                            onClick={() => {
+                                if (athlete.id != null) {
+                                    onPurchaseAthlete(athlete.id)
+                                }
+                            }}
                             className="btn bg-green-400"
                         >
                             Purchase

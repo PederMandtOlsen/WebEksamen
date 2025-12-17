@@ -2,7 +2,6 @@ import type { IVenue } from "./IVenue";
 import type { IDefaultResponse } from "./ResponseInterfaces";
 
 
-// legge til mer senere
 export interface IVenueContext {
     venues: IVenue[]
     getVenueQuantity: () => number
