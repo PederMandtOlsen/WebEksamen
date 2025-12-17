@@ -69,7 +69,7 @@ const VenueItem = ({ venue, allowEdit = false, }: { venue: IVenue; allowEdit?: b
             {!showEditForm ? (
                 <>
                     <img
-                        src={venue.image}
+                        src={image}
                         alt={venue.name}
                         className="img-styling"
                         onError={(e) => {
@@ -77,9 +77,9 @@ const VenueItem = ({ venue, allowEdit = false, }: { venue: IVenue; allowEdit?: b
                         }}
                     />
                     <div className="mt-4">
-                        <h3 className="text-lg font-semibold"> {venue.name}</h3>
+                        <h3 className="text-lg font-semibold"> {name}</h3>
                         <p>ID: {venue.id}</p>
-                        <p>Capacity: {venue.capacity}</p>
+                        <p>Capacity: {capacity}</p> 
                     </div>
 
                     {allowEdit && (
@@ -99,10 +99,10 @@ const VenueItem = ({ venue, allowEdit = false, }: { venue: IVenue; allowEdit?: b
                 </>
             ) : (
 
-                <form onSubmit={saveEdit} >
+                <form className="w-full" onSubmit={saveEdit} >
 
                     <img
-                        src={venue.image}
+                        src={image}
                         alt={venue.name}
                         className="img-styling"
                         onError={(e) => {
@@ -110,15 +110,15 @@ const VenueItem = ({ venue, allowEdit = false, }: { venue: IVenue; allowEdit?: b
                         }}
                     />
                     <div className="w-full max-w-[320px] grid gap-3">
-                        <div className="grid grid-cols-[110px_1fr] items-center gap-2 mt-4">
+                        <div className="grid items-center gap-2 mt-4">
                             <label>Name: </label>
                             <input
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
-                                className="border rounded px-2 py-1 w-40"
+                                className="border rounded px-2 py-1 w-full"
                             />
                         </div>
-                        <div className="grid grid-cols-[110px_1fr] items-center gap-2">
+                        <div className="grid items-center gap-2">
                             <label>Capacity: </label>
                             <input
                                 type="number"
@@ -127,7 +127,7 @@ const VenueItem = ({ venue, allowEdit = false, }: { venue: IVenue; allowEdit?: b
                                 className="border rounded px-2 py-1 w-full"
                             />
                         </div>
-                        <div className="grid grid-cols-[110px_1fr] w-full items-center gap-2    ">
+                        <div className="grid w-full items-center gap-2">
                             <label>Image URL: </label>
                             <input
                                 value={image}

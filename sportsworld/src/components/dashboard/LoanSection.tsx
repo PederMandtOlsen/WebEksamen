@@ -7,10 +7,10 @@ interface LoanSectionProps {
 const LoanSection = ({ onAddLoan }: LoanSectionProps) => {
     const [loanAmount, setLoanAmount] = useState("");
 
-    const handleAddLoan = () => {
+    const handleAddLoan = async () => {
         const amount = parseInt(loanAmount);
         if (amount > 0) {
-            onAddLoan(amount);
+            await onAddLoan(amount);
             setLoanAmount("");
         }
     };

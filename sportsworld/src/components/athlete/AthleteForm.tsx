@@ -21,7 +21,7 @@ const AthleteForm = () => {
         setTimeout(() => {
             setStatusMessage("");
             setIsOk(null);
-        }, 5000);
+        }, 3000);
     };
 
     const imageChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -60,18 +60,18 @@ const AthleteForm = () => {
 
             await addAthlete(newAthlete);
 
-            updateStatusMessage("Athlete saved", true);
+            updateStatusMessage("Newt athlete saved", true);
             nameInput.current.value = "";
             genderInput.current.value = "";
             priceInput.current.value = "";
             setImageFile(null);
         } catch {
-            updateStatusMessage("Something went wrong trying to save athlete", false);
+            updateStatusMessage("Something went wrong trying to save an athlete", false);
         }
     };
 
     return (
-        <section className="p-4 border rounded-xl w-100">
+        <section className="p-4 border rounded-xl w-full">
             <h2 className="text-lg mb-4">Register a new athlete</h2>
 
             <div className="grid gap-2">
@@ -79,7 +79,7 @@ const AthleteForm = () => {
                 <input ref={nameInput} type="text" className="border rounded p-1" />
 
                 <label>Gender</label>
-                <select ref={genderInput} className="border rounded p-1" defaultValue="">
+                <select ref={genderInput} className="border rounded p-1">
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
                     <option value="Other">Other</option>
@@ -92,7 +92,7 @@ const AthleteForm = () => {
                 <input type="file" onChange={imageChangeHandler} />
             </div>
 
-            <button onClick={handleAddAthlete} className="btn mt-4">
+            <button onClick={handleAddAthlete} className="btn mt-4 bg-black text-white">
                 Lagre
             </button>
 

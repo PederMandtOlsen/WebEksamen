@@ -30,7 +30,7 @@ const AthleteSearchById = () => {
             }
 
         } catch (error) {
-            console.error("Venue search failed:", error)
+            console.error("Athlete search failed:", error)
             setStatusMessage("Something went wrong trying to search")
             setAthlete(null)
         }

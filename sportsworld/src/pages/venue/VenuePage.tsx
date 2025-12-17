@@ -11,14 +11,14 @@ const VenuePage = () => {
 
                 <section className=" p-4 rounded-lg mb-6">
                     <div className="flex justify-center gap-4">
-                        <VenueSearchById />
-                        <VenueSearchByName />
+                        <VenueSearchById/>
+                        <VenueSearchByName/>
                     </div>
                 </section>
 
                 <section className="grid grid-cols-12 gap-6 bg-gray-100 p-4">
                     <section className="col-span-12">
-                        <VenueList allowEdit={false} />
+                        <VenueList allowEdit={false}/>
                     </section>
                 </section>
 

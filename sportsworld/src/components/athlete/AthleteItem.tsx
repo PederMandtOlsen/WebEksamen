@@ -19,7 +19,7 @@ const AthleteItem = ({ athlete }: { athlete: IAthlete }) => {
     const imageUrl = AthleteService.getImageEndpoint() + image;
 
     const startEdit = () => {
-        setName(athlete.name);
+        setName(athlete.name); 
         setGender(athlete.gender);
         setPrice(athlete.price);
         setImage(athlete.image);
@@ -40,7 +40,7 @@ const AthleteItem = ({ athlete }: { athlete: IAthlete }) => {
         let imagePath = image;
 
         if (imageFile) {
-            const uploadResult = await ImageUploadService.uploadImage(imageFile);
+            const uploadResult = await ImageUploadService.uploadImage(imageFile)    ;
             imagePath = `/images/${uploadResult.filePath}`;
 
         }
@@ -81,6 +81,7 @@ const AthleteItem = ({ athlete }: { athlete: IAthlete }) => {
                     <h3 className="text-lg font-bold">{athlete.name}</h3>
 
                     <div className="text-sm space-y-1">
+                        <p>ID: {athlete.id}</p>
                         <p>Gender: {athlete.gender}</p>
                         <p>Price: {athlete.price} $</p>
                     </div>
