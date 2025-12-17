@@ -39,7 +39,7 @@ const getAthleteById = async (id: number) : Promise<IAthleteResponse> => {
 const searchByName = async (name: string) : Promise<IAthletesResponse> => {
     try {
 
-        const response = await axios.get(`${endpoint}/get-by-name/${encodeURIComponent(name)}`);
+        const response = await axios.get(`${endpoint}/get-by-name/${name}`);
         return {
             success: true,
             data: response.data 
@@ -60,7 +60,6 @@ const postAthlete = async (athlete: IAthlete) : Promise<IAthleteResponse> => {
     try {
         const response = await axios.post(endpoint, athlete);
 
-        console.log(response) 
 
         return {
             success: true,
@@ -80,7 +79,6 @@ const deleteAthlete = async (id: number) : Promise<IDefaultResponse>=> {
     try {
        const response = await axios.delete(`${endpoint}/${id}`)
 
-        console.log(response)
 
         return {
             success: true
@@ -95,8 +93,6 @@ const deleteAthlete = async (id: number) : Promise<IDefaultResponse>=> {
 const putAthlete = async (editedAthlete: IAthlete) : Promise<IAthleteResponse> => {
     try {
         const response = await axios.put(`${endpoint}/${editedAthlete.id}`,editedAthlete);
-
-        console.log(response) 
 
         return {
             success: true,

@@ -65,7 +65,7 @@ const handleAddAthlete = async () => {
     }
 
     return (
-    <section className="p-4 border rounded w-100">
+    <section className="p-4 border rounded-xl w-100">
         <h2 className="text-lg mb-4">Register a new athlete</h2>
         <div className="grid gap-2 ">
             <label>Name</label>

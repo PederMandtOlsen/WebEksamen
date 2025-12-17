@@ -17,14 +17,13 @@ const [gender, setGender] = useState(athlete.gender)
 const [price, setPrice] = useState(athlete.price)
 const [image, setImage] = useState(athlete.image)
 
-useEffect(() => {
+
+const startEdit = () => { 
     setName(athlete.name)
     setGender(athlete.gender)
     setPrice(athlete.price)
     setImage(athlete.image)
-}, [athlete])
-
-const startEdit = () => { setIsEditing(true) }
+    setIsEditing(true) }
 
 const cancelEdit = () => {
     setIsEditing(false)

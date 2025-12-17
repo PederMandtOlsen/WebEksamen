@@ -15,7 +15,7 @@ export const FinanceProvider = ({ children }: Props) => {
 
     useEffect(() => {
         loadFinance();
-    }, []);
+    }, []); //hindrer http spam
 
     const loadFinance = async () => {
         try {

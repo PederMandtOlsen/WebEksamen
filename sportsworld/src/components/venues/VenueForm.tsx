@@ -10,7 +10,6 @@ const VenueManager = () => {
 
 const {addVenue} = useContext(VenueContext) as IVenueContext
 
-//Kan være ønskelig å bruke useState for å holde på verdien hvis man går ut av AthleteRegisterPage, men for kode variasjon bruker vi useRef
 
 const nameInput = useRef<HTMLInputElement | null>(null)
 const capacityInput = useRef<HTMLInputElement | null>(null)
@@ -32,7 +31,7 @@ const handleAddVenue = async () => {
         capacityInput.current &&
         imageInput.current &&
         nameInput.current.value.trim() !== "" &&
-        capacityInput.current.value.trim() !== "" && // se om det er riktig med string her
+        capacityInput.current.value.trim() !== "" && 
         imageInput.current.value.trim() !== ""
     ) {
         const newVenue: IVenue = {

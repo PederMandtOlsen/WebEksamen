@@ -9,4 +9,5 @@ export interface IVenueContext {
     addVenue: (newVenue: IVenue) => Promise<IDefaultResponse>
     deleteVenue: (id: number) => Promise<IDefaultResponse>
     updateVenue: (venue: IVenue) => Promise<IDefaultResponse>
+    refreshVenues: () => Promise<void>
 }

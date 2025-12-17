@@ -5,7 +5,6 @@ import AthleteService from "../services/AthleteService";
 import type { IDefaultResponse } from "../interfaces/ResponseInterfaces";
 
 
-// gå over litt kode her
 
 export const AthleteContext = createContext<IAthleteContext | null>(null)
 
@@ -72,13 +71,6 @@ export const AthleteProvider = ({children} : Props) => {
 
         if(response.success === true) {
             await refreshAthletes()
-
-            /*
-            const saved: IAthlete = response.data ?? updated
-
-            setAthletes(prev => 
-                prev.map(athlete => athlete.id === saved.id ? saved: athlete ) 
-            ) */
 
             return {success: true}
         }

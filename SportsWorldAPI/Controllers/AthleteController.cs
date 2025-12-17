@@ -6,7 +6,6 @@ using SportsWorldAPI.Models;
 namespace SportsWorldAPI.Controllers;
 
 
-// Vurdere repository for Controller fra Slideserie-CRUD-fra-frontend-til-backend
 
 
 [ApiController]

@@ -1,10 +1,11 @@
 import { useState } from "react";
 import VenueService from "../../services/VenueService";
+import type { IVenue } from "../../interfaces/IVenue";
 
 const VenueSearchByName = () => {
     const [name, setName] = useState ("")
     const [statusMessage, setStatusMessage] = useState ("")
-    const [venues, setVenues] = useState<any[]>([])
+    const [venues, setVenues] = useState<IVenue[]>([])
 
 
     const handleSearch = async () => {
@@ -28,8 +29,10 @@ const VenueSearchByName = () => {
 
         }
 
-       } catch (result) {
-        console.log("searchResult:", result)
+       } catch (error) {
+         console.error("Venue search failed:", error)
+         setStatusMessage("Something went wrong trying to search")
+         setVenues([])
        }
     }
 

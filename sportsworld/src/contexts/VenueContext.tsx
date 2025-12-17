@@ -5,7 +5,6 @@ import VenueService from "../services/VenueService";
 import type { IDefaultResponse } from "../interfaces/ResponseInterfaces";
 
 
-// gå over litt kode her
 
 export const VenueContext = createContext<IVenueContext | null>(null)
 
@@ -25,13 +24,11 @@ export const VenueProvider = ({children} : Props) => {
 
     const setVenuesFromService = async () => {
     const response = await VenueService.getAllVenues();
-    console.log("Response from VenueService:", response);
 
     if (response.success === true && response.data != null) {
-        console.log("Data from API:", response.data);
         setVenues(response.data);
     } else {
-        console.warn("Couldnt get athletes");
+        console.warn("Couldnt get venues");
     }
 };
 
@@ -93,7 +90,9 @@ export const VenueProvider = ({children} : Props) => {
                 getVenueQuantity,
                 addVenue,
                 deleteVenue,
-                updateVenue
+                updateVenue,
+                refreshVenues
+
             }}> 
             {children}
         </VenueContext.Provider>

@@ -39,7 +39,7 @@ const getVenueById = async (id: number) : Promise<IVenueResponse> => {
 const searchByName = async (name: string) : Promise<IVenuesResponse> => {
     try {
 
-        const response = await axios.get(`${endpoint}/get-by-name/${encodeURIComponent(name)}`); // nevne hvor jeg fant encodeURICOmp
+        const response = await axios.get(`${endpoint}/get-by-name/${name}`); // nevne hvor jeg fant encodeURICOmp
         return {
             success: true,
             data: response.data 
@@ -60,8 +60,6 @@ const postVenue = async (venue: IVenue) : Promise<IVenueResponse> => {
     try {
         const response = await axios.post(endpoint, venue);
 
-        console.log(response) 
-
         return {
             success: true,
             data: response.data
@@ -79,8 +77,6 @@ const postVenue = async (venue: IVenue) : Promise<IVenueResponse> => {
 const deleteVenue = async (id: number) : Promise<IDefaultResponse>=> {
     try {
        const response = await axios.delete(`${endpoint}/${id}`)
-
-        console.log(response)
 
         return {
             success: true

@@ -1,10 +1,11 @@
 import { useState } from "react";
 import AthleteService from "../../services/AthleteService";
+import type { IAthlete } from "../../interfaces/IAthlete";
 
 const AthleteSearchByName = () => {
     const [name, setName] = useState ("")
     const [statusMessage, setStatusMessage] = useState ("")
-    const [athletes, setAthletes] = useState<any[]>([])
+    const [athletes, setAthletes] = useState<IAthlete[]>([])
 
 
     const handleSearch = async () => {
@@ -28,8 +29,10 @@ const AthleteSearchByName = () => {
 
         }
 
-       } catch (result) {
-        console.log("searchResult:", result)
+       } catch (error) {
+         console.error("Venue search failed:", error)
+         setStatusMessage("Something went wrong trying to search")
+         setAthletes([])
        }
     }
 
